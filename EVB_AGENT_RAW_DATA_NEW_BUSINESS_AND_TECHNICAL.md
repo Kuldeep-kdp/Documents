@@ -199,22 +199,4 @@ Stored in the **S3 JSON config** (e.g. `evb_agent_raw_data_new_job_config.json` 
 ## 8. For analysts (Athena / SQL)
 
 - The **denormalized** result is the **Iceberg** table (e.g. `temp.evb_agent_raw_data_new`).  
-- Example aggregate patterns are in `queries/athena_evb_aggregates.sql` (group by `contract`, `tenant`, `service_type`, `count distinct par_id`).  
 - The job **does not** currently add **`modality`** to silver; that lives on **bronze** `pap_procedures` if you need it in ad hoc SQL or a future job change.
-
----
-
-## 9. Document control
-
-| Item | Location |
-|------|----------|
-| Job script | `Jobs/evb_agent_raw_data_new_glue_job.py` |
-| Config template | `config/evb_agent_raw_data_new_job_config.json` |
-| Example Athena SQL | `queries/athena_evb_aggregates.sql` |
-| Dimension (repo copy) | `Dimension/dim_tenant_speciality_master.json` |
-
-If business rules change (e.g. new time driver, new CH path), update the **S3 config** and/or the **code**; keep this document in sync for stakeholders.
-
----
-
-*Mermaid diagrams (including `classDef` / colour styling) render in GitHub, many IDEs, and Confluence; export as image from those tools if a non-technical PDF is needed. If colours do not appear, update the Mermaid version in your viewer or use a Mermaid Live Editor to export a PNG.*
