@@ -149,6 +149,3 @@ flowchart TB
 
 - **EVB job:** S3 **config** — time window, target silver table, **checkpoint / audit / dimension** locations, test mode, `data_source` for audit. **Glue** parameters: `JOB_NAME`, `S3_BUCKET`, `CONFIG_S3_KEY`.  
 - **CH staging job:** S3 **config** — bronze table name, target **staging** Iceberg table, **merge** id and `modified_on` columns, **partition** (e.g. `modified_date`), **checkpoint** key, **audit** label, optional `include_request_response_raw`.
-
-
-*Mermaid diagrams render in common Markdown viewers. Colours follow the v1 style for continuity.*
