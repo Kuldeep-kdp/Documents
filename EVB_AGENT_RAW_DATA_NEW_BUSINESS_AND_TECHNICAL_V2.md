@@ -112,7 +112,7 @@ flowchart TB
   WA["work assignments\n(latest 1)"]
   INS["pap_insurance"]
   PRO["pap_procedures"]
-  CHL["CH: staging flat (or in-job parse)"]
+  CHL["CH: staging flat (Staging Table)"]
 
   PAR -->|inner| C
   PAR -->|left| WA
@@ -149,17 +149,5 @@ flowchart TB
 - **EVB job:** S3 **config** — time window, target silver table, **checkpoint / audit / dimension** locations, test mode, `data_source` for audit. **Glue** parameters: `JOB_NAME`, `S3_BUCKET`, `CONFIG_S3_KEY`.  
 - **CH staging job:** S3 **config** — bronze table name, target **staging** Iceberg table, **merge** id and `modified_on` columns, **partition** (e.g. `modified_date`), **checkpoint** key, **audit** label, optional `include_request_response_raw`.
 
----
-
-## 8. v1 vs v2 (reader’s guide)
-
-| Topic | v1 | v2 (this document) |
-|--------|----|---------------------|
-| **Focus** | EVB silver + inline CH parse from **bronze** | **Staged CH** + same **EVB** silver **join** story |
-| **Diagrams** | Source → transform → single silver | **Bronze + staging** → **EVB** → silver |
-| **CH staging job** | Not part of the narrative | **First-class**: flat table, MERGE, checkpoint |
-| **Implementation detail** | CH read from `pap_platform_ch_request_response` in EVB | **Target**: silver reads **staging**; **today** some pipelines may still parse **bronze** in EVB — join rules stay the same |
-
----
 
 *Mermaid diagrams render in common Markdown viewers. Colours follow the v1 style for continuity.*
