@@ -55,7 +55,6 @@ flowchart TB
   CHB --> S
   S --> CHS["Iceberg: CH staging table"]
   PAP --> E
-  CHB -.->|"same keys / optional dual read"| E
   CHS -->|"target: read flat CH for join"| E
   E --> SIL["Iceberg: EVB silver \none row per PAR+contract"]
 
